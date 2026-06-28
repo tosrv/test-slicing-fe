@@ -293,6 +293,10 @@
     gap: 6px;
     margin: 0 12px 12px;
   }
+
+  .vehicle-card__footer span {
+    white-space: normal;
+  }
 }
 
 @media (max-width: 480px) {
