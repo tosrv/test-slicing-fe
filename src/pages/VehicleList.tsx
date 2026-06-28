@@ -1,5 +1,11 @@
+import VehicleListContent from "../components/VehicleListContent";
+
 function VehicleList() {
-  return <h1>Vehicle List</h1>
+  return (
+    <div className="vehicle-list">
+      <VehicleListContent />
+    </div>
+  );
 }
 
 export default VehicleList;
