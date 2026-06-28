@@ -24,6 +24,14 @@ git clone https://github.com/tosrv/test-slicing-fe.git
 cd test-slicing-fe
 ```
 
+### Environment
+
+Salin file environment lalu sesuaikan jika diperlukan:
+
+```bash
+cp .env.example .env
+```
+
 ### Install Dependencies
 
 ```bash
@@ -46,6 +54,18 @@ http://localhost:5173
 
 Project ini menggunakan **Vanilla CSS** tanpa framework CSS agar implementasi sesuai dengan requirement technical test.
 
+Struktur CSS:
+
+```
+src/styles/
+├── layout.css
+├── sidebar.css
+├── navbar.css
+├── login.css
+├── vehicle-list.css
+└── coming-soon.css
+```
+
 ## Responsive
 
 Layout dioptimalkan untuk:
@@ -53,6 +73,18 @@ Layout dioptimalkan untuk:
 - Mobile
 - Tablet
 - Desktop
+
+## Catatan: Konflik Soal vs Desain Figma
+
+Beberapa bagian soal dan desain Figma tidak sepenuhnya sama. Keputusan implementasi mengikuti prinsip:
+
+- **Data & logika** → mengikuti **soal + API**
+- **Layout & visual** → mengikuti **Figma**
+
+| Area | Soal / API | Figma | Keputusan |
+|------|------------|-------|-----------|
+| Footer vehicle card | Wajib tampilkan `activation_time` | Label `Data Terakhir` (`last_update`) | Menggunakan **`Activation : {activation_time}`** sesuai soal |
+| Label login | API memakai `username` | Label "Email address" | Label diubah menjadi **Username** |
 
 ## Author
 
