@@ -1,6 +1,34 @@
+import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 import "../styles/login.css";
+import { useNavigate } from "react-router-dom";
+import { login as loginService } from "../services/auth";
 
 function LoginForm() {
+  const { login } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    try {
+      const data = await loginService({
+        username,
+        password,
+      });
+
+      console.log(data.token);
+
+      login(data.token);
+
+      navigate("/vehicle-list");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="login__container">
       <h1 className="login__title">
@@ -11,7 +39,7 @@ function LoginForm() {
         Please enter your email and password to continue
       </p>
 
-      <form className="login__form">
+      <form className="login__form" onSubmit={handleSubmit}>
         <div className="login__field">
           <label className="login__label" htmlFor="email">
             Email address:
@@ -22,6 +50,8 @@ function LoginForm() {
             id="email"
             type="text"
             placeholder="esteban_schiller@gmail.com"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
 
@@ -41,6 +71,8 @@ function LoginForm() {
             id="password"
             type="password"
             placeholder="• • • • • •"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
